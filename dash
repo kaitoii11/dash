@@ -1,0 +1,25 @@
+#!/bin/sh
+
+help(){
+  echo "Help:"
+  echo "dash [argument]"
+}
+
+dash () {
+  # check platform
+  if [ "$(uname)" != "Darwin" ]; then
+    echo "$(uname) not supported yet"
+    return 1
+  fi
+
+  # check arguments
+  if [ "$#" -ne 1 ]; then
+    help
+    return 1
+  elif [ "$1" = "-h" ]; then
+    help
+    return 1
+  fi
+
+  open dash://${1}
+}
